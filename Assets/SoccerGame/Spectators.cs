@@ -30,9 +30,10 @@ public class Spectators : MonoBehaviour
 	void OnEnable()
 	{
 		Goal.GoalScoredEvent += CrowdCheer;
+		Goal.OwnGoalScoredEvent += HomeGoalReaction;
 	}
 
-	public void CrowdCheer(string team)
+	void CrowdCheer(string team)
 	{
 		if(team == "Red")
         {
@@ -54,5 +55,19 @@ public class Spectators : MonoBehaviour
 		yield return new WaitForSeconds(2f);
 
 		crowdJump = false;
+    }
+
+	void HomeGoalReaction(Team.TeamNames team)
+    {
+		if(team == Team.TeamNames.Red)
+        {
+			print("RED CROWD: ....");
+			print("BLUE CROWD: HAHA! WOOHOO");
+		}
+		else
+        {
+			print("BLUE CROWD: ....");
+			print("RED CROWD: HAHA! WOOHOO");
+		}
     }
 }

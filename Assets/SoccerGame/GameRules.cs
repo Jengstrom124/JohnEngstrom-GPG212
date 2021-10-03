@@ -20,14 +20,23 @@ public class GameRules : MonoBehaviour
     void OnEnable()
     {
         Goal.GoalScoredEvent += NewRound;
+        Goal.OwnGoalScoredEvent += NewRound2;
     }
 
+    //Had to create a new function here because of the parameters set in the events (ideally I would update the parameter in the first event to use the same function
+    //but for showing progress I am leaving both in to show how I leart better syntax for the event)
     void NewRound(string team)
     {
         //resetInProgress = true;
         StartCoroutine(ResetAfterGoal());
     }
+    void NewRound2(Team.TeamNames team)
+    {
+        //resetInProgress = true;
+        StartCoroutine(ResetAfterGoal());
+    }
 
+    //Fire Event to reset the level
     IEnumerator ResetAfterGoal()
     {
         Debug.Log("Resetting Level...");
@@ -46,6 +55,7 @@ public class GameRules : MonoBehaviour
         //SceneManager.LoadScene(1);
     }
 
+    //Fire event to reset the level if the ball or player go out of bounds
     public IEnumerator ResetAfterDead()
     {
         Debug.Log("DEAD!! Resetting Level");

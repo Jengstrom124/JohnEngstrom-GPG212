@@ -20,5 +20,6 @@ public class RespawnModel : MonoBehaviour
     void Respawn()
     {
         this.transform.localPosition = originalPos;
+        this.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 }

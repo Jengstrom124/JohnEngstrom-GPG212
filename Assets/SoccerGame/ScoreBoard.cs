@@ -49,6 +49,7 @@ public class ScoreBoard : MonoBehaviour
 	void OnEnable()
 	{
 		Goal.GoalScoredEvent += Score;
+		Goal.OwnGoalScoredEvent += TeamGoal;
 	}
 
 
@@ -83,4 +84,19 @@ public class ScoreBoard : MonoBehaviour
 		//ReadScoreFunction();
 		//PlayerPrefs.SetInt("currentScore", currentScore);
 	}
+
+
+	void TeamGoal(Team.TeamNames team)
+    {
+		if(team == Team.TeamNames.Red)
+        {
+			blueScore++;
+			ReadScoreFunction("RedHomeGoal");
+        }
+		else
+        {
+			redScore++;
+			ReadScoreFunction("BlueHomeGoal");
+        }
+    }
 }

@@ -16,14 +16,38 @@ public class Announcer : MonoBehaviour
 		ScoreBoard.ReadScoreEvent += AnnounceGoal;
 	}
 
-	public void AnnounceGoal(string team)
+
+	//Unfortunately here is another area where I couldn't make this as modula as I wanted due to how I layed out the previous event using a string parameter
+	//Ideally I would want to use a variable for the team name so it could update if the names changed
+	void AnnounceGoal(string team)
 	{
-		if(team == "Red")
+		if(team == "RedHomeGoal")
+        {
+			if (sb.blueScore <= 1)
+			{
+				print("ANNOUNCER: UH OH, looks like the Red team scored a home goal!! Blue team scores their first point, leaving them now at " + sb.blueScore + " point!");
+			}
+			else
+			{
+				print("ANNOUNCER: UH OH, looks like the Red team scored a home goal!! Blue team scores, leaving them now at " + sb.blueScore + " points!");
+			}
+        }
+		else if(team == "BlueHomeGoal")
+        {
+			if (sb.redScore <= 1)
+			{
+				print("ANNOUNCER: UH OH, looks like the Blue team scored a home goal!! Red team scores their first point, leaving them now at " + sb.redScore + " point!");
+			}
+			else
+			{
+				print("ANNOUNCER: UH OH, looks like the Blue team scored a home goal!! Red team scores, leaving them now at " + sb.redScore + " points!");
+			}
+		}
+		else if(team == "Red")
         {
 			if(sb.redScore <= 1)
             {
 				print("ANNOUNCER: The " + team + " team scores their first point of the game!! They now have " + sb.redScore + " point!");
-
 			}
 			else
             {
@@ -35,7 +59,6 @@ public class Announcer : MonoBehaviour
 			if (sb.blueScore <= 1)
 			{
 				print("ANNOUNCER: The " + team + " team scores their first point of the game!! They now have " + sb.blueScore + " point!");
-
 			}
 			else
 			{
